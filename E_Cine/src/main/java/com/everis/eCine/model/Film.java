@@ -27,6 +27,11 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class Film extends AbstractModel<Long>{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Column(nullable = false, length = 50)
     private String titre;
 	

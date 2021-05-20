@@ -18,4 +18,8 @@ public class FilmService extends AbstractService<Film, Long> {
 		return filmRepository;
 	}
 
+	public Film getFilmByTitre(String titre) {
+		return filmRepository.findByTitre(titre);
+	}
+
 }

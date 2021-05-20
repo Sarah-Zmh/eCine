@@ -7,5 +7,6 @@ import com.everis.eCine.model.Film;
 
 @Repository
 public interface FilmRepository extends JpaRepository<Film, Long> {
+	public Film findByTitre(String titre);
 
 }
