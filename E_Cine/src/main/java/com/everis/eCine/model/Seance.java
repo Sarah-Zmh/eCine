@@ -1,8 +1,7 @@
 package com.everis.eCine.model;
 
-
-
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,21 +23,21 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Seance extends AbstractModel<Long>{
+public class Seance extends AbstractModel<Long> {
 	@Column(name = "date_projection")
-    private Date dateProjection;
-	
+	private LocalDate dateProjection;
+
 	@Column(name = "heure_debut")
-    private java.sql.Time heureDebut;
-	
+	private LocalTime heureDebut;
+
 	@Column(name = "heure_fin")
-    private java.sql.Time heureFin;
-	
-	@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="Film_ID")
-    private Film film;
-	
-	@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="salle_ID")
-    private Salle salle;
+	private LocalTime heureFin;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "Film_ID")
+	private Film film;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "salle_ID")
+	private Salle salle;
 }

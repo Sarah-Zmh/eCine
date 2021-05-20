@@ -1,6 +1,7 @@
 package com.everis.eCine.service;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -13,36 +14,41 @@ import com.everis.eCine.model.AbstractModel;
 
 public abstract class AbstractService<T extends AbstractModel<Long>, Long extends Serializable> {
 
-    private static final int PAGE_SIZE = 5;
-    protected abstract JpaRepository<T, Long> getRepository();
+	private static final int PAGE_SIZE = 5;
 
-    public Page<T> getList(Integer pageNumber) {
-        PageRequest pageRequest =
-                PageRequest.of(pageNumber - 1, PAGE_SIZE, Sort.Direction.ASC, "id");
+	protected abstract JpaRepository<T, Long> getRepository();
 
-        return getRepository().findAll(pageRequest);
-    }
+	public Page<T> getList(Integer pageNumber) {
+		PageRequest pageRequest = PageRequest.of(pageNumber - 1, PAGE_SIZE, Sort.Direction.ASC, "id");
 
-    public T save(T entity) {
-        return getRepository().save(entity);
-    }
+		return getRepository().findAll(pageRequest);
+	}
 
-    public T get(Long id) {
-        Optional<T> entityOpt = getRepository().findById(id);
-        T entity = entityOpt.get();
-        return entity;
-    }
+	public T save(T entity) {
+		return getRepository().save(entity);
+	}
 
-    public void delete(Long id) {
-        try {
-            getRepository().deleteById(id);
-        } catch (EmptyResultDataAccessException e) {}
-    }
+	public T get(Long id) {
+		Optional<T> entityOpt = getRepository().findById(id);
+		T entity = entityOpt.get();
+		return entity;
+	}
 
-    public void update(T entity) {
-        Optional<T> getEntityOpt = getRepository().findById(entity.getId());
-        T getEntity = getEntityOpt.get();
-        getRepository().save(entity);
-    }
+	public void delete(Long id) {
+		try {
+			getRepository().deleteById(id);
+		} catch (EmptyResultDataAccessException e) {
+		}
+	}
+
+	public void update(T entity) {
+		Optional<T> getEntityOpt = getRepository().findById(entity.getId());
+		T getEntity = getEntityOpt.get();
+		getRepository().save(entity);
+	}
+
+	public List<T> getListAll() {
+		return getRepository().findAll();
+	}
 
 }
