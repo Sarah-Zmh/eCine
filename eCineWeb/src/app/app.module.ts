@@ -26,7 +26,8 @@ import { AdminDashboardComponent } from './components/main-dashboard/admin-dashb
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
